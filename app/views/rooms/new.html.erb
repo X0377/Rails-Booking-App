@@ -1,2 +1,25 @@
-<h1>Rooms#new</h1>
-<p>Find me in app/views/rooms/new.html.erb</p>
+<h2>施設を登録する</h2>
+
+<%= form_with(model: @room, local: true) do |f| %>
+<div>
+  <%= f.label :name, '施設名' %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :description, '施設の説明' %>
+  <%= f.text_area :description %>
+</div>
+
+<div>
+  <%= f.label :price, '料金' %>
+  <%= f.number_field :price %>
+</div>
+
+<div>
+  <%= f.label :address, '住所' %>
+  <%= f.text_field :address %>
+</div>
+
+<%= f.submit '登録する' %>
+<% end %>
