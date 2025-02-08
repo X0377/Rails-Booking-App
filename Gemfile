@@ -9,6 +9,7 @@ gem 'concurrent-ruby', '1.3.4'
 gem 'mutex_m'
 gem 'bigdecimal'
 gem 'psych', '~> 3.1'
+gem 'devise'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
