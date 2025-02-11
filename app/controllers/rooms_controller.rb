@@ -1,4 +1,7 @@
 class RoomsController < ApplicationController
+  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @rooms = current_user.rooms
   end
@@ -13,31 +16,36 @@ class RoomsController < ApplicationController
 
     if @room.save
       redirect_to @room, notice: "施設を登録しました"
-      # :roomだと /rooms の一覧ページへリダイレクト
+      # :roomだと /rooms の一覧ページへリダイレクトするので要チェック
     else
       render :new
     end
   end
 
   def show
-    @room = Room.find(params[:id])
   end
 
   def edit
-    @schedule = Schedule.find(params[:id])
   end
 
   def update
-    # if
-    #else
-    #  render :edit
-    #end
+    if @room.update(room_params)
+      redirect_to @room, notice: "施設情報を更新しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @room.destroy
+    redirect_to rooms_path, notice: "施設を削除しました"
   end
 
   private
+
+  def set_room
+    @room = Room.find(params[:id])
+  end
 
   def room_params
     params.require(:room).permit(:name, :description, :price, :address, :image)
