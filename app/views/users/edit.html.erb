@@ -1,0 +1,17 @@
+<h2>プロフィール編集</h2>
+
+<%= form_with model: @user, local: true do |f| %>
+<div>
+  <%= f.label :name, "名前" %>
+  <%= f.text_field :name %>
+</div>
+
+<div>
+  <%= f.label :profile, "プロフィール" %>
+  <%= f.text_area :profile %>
+</div>
+
+<%= f.submit "更新" %>
+<% end %>
+
+<%= link_to "キャンセル", user_path(@user) %>

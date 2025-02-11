@@ -10,6 +10,7 @@ gem 'mutex_m'
 gem 'bigdecimal'
 gem 'psych', '~> 3.1'
 gem 'devise'
+gem 'pry-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
