@@ -11,6 +11,11 @@
   <%= f.text_area :profile %>
 </div>
 
+<div>
+  <%= f.label :avatar, "プロフィール画像" %>
+  <%= f.file_field :avatar %>
+</div>
+
 <%= f.submit "更新" %>
 <% end %>
 

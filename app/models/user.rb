@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  has_one_attached :avatar
   has_many :rooms
   has_many :reservations
 end
