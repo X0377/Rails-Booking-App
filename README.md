@@ -1,24 +1,20 @@
-# README
+# Rails Booking App 🏨
+A simple hotel booking web application built with Ruby on Rails.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 📌 Overview
+This is a web application where users can browse, search, and book accommodations.  
+It includes authentication, reservation management, and search functionality.
 
-Things you may want to cover:
+## 🛠 Tech Stack
+- **Backend:** Ruby on Rails (6.1.3.2), PostgreSQL
+- **Frontend:** ERB, Bootstrap
+- **Authentication:** Devise
 
-* Ruby version
+## 🚀 Features
+- User authentication (sign-up, login, logout)
+- Room listing and filtering
+- Booking system with date selection
+- Admin panel for managing rooms and reservations
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 📸 Screenshots
+![Booking Page](https://via.placeholder.com/600x300)  
