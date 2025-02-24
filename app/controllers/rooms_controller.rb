@@ -1,9 +1,23 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
 
   def index
-    @rooms = current_user.rooms
+    @rooms = user_signed_in? ? current_user.rooms : Room.all
+  end
+
+  def search
+    @rooms = user_signed_in? ? current_user.rooms : Room.all
+
+    if params[:keyword].present?
+      @rooms = @rooms.where("name LIKE :keyword OR address LIKE :keyword OR description LIKE :keyword", keyword: "%#{params[:keyword]}%")
+    end
+
+    if params[:area].present?
+      @rooms = @rooms.where("address LIKE?", "%#{params[:area]}%")
+    end
+
+    render :index
   end
 
   def new
