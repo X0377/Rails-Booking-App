@@ -1,0 +1,11 @@
+<h2>予約一覧</h2>
+
+<% @reservations.each do |reservation| %>
+<div>
+  <h3><%= reservation.room.name %></h3>
+  <p>チェックイン: <%= reservation.check_in %></p>
+  <p>チェックアウト: <%= reservation.check_out %></p>
+  <p>宿泊人数: <%= reservation.guest_count %></p>
+  <%= link_to "詳細を見る", room_reservation_path(reservation.room, reservation) %>
+</div>
+<% end %>
