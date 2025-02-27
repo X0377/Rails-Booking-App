@@ -33,7 +33,7 @@ The Booking App is a Ruby on Rails application that allows users to register acc
 ## 🔧 Setup
 To run this project locally, follow these steps:
 ```sh
-git clone <repository-url>
+git clone https://github.com/X0377/Rails-Booking-App.git
 cd booking_app
 bundle install
 rails db:create db:migrate
