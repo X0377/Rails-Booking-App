@@ -38,6 +38,12 @@
   </div>
 </div>
 
+<% if user_signed_in? %>
+<%= link_to "この施設を予約する", new_room_reservation_path(@room), class: "btn btn-primary" %>
+<% else %>
+<%= link_to "ログインして予約", new_user_session_path, class: "btn btn-secondary" %>
+<% end %>
+
 <%= link_to '編集', edit_room_path(@room) %>
 <%= link_to '削除', room_path(@room), method: :delete, data: { confirm: "本当に削除しますか？" } %>
 <%= link_to '一覧に戻る', rooms_path %>

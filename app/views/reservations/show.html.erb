@@ -6,4 +6,6 @@
 <p>宿泊人数: <%= @reservation.guest_count %></p>
 <p>合計料金: ¥<%= number_with_delimiter(@reservation.room.price * (@reservation.check_out - @reservation.check_in).to_i) %></p>
 
-<%= link_to "戻る", room_reservations_path(@reservation.room) %>
+<%= link_to "予約をキャンセル", room_reservation_path(@reservation), method: :delete, data: { confirm: "本当にキャンセルしますか？" } %>
+
+<%= link_to "予約一覧に戻る", room_reservations_path(@reservation.room) %>

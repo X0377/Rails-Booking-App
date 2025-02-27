@@ -42,6 +42,21 @@ class RoomsController < ApplicationController
   def edit
   end
 
+  def search
+    @rooms = Room.all
+
+    if params[:keyword].present?
+      @rooms = @rooms.where("name LIKE ? OR address LIKE ? OR description LIKE ?", 
+                            "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+    end
+
+    if params[:area].present?
+      @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
+    end
+
+    render :index
+  end
+
   def update
     if @room.update(room_params)
       redirect_to @room, notice: "施設情報を更新しました"
