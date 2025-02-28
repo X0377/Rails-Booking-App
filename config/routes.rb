@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'rooms#index'
   devise_for :users
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update], constraints: { id: /\d+/ }
+  root to: 'rooms#index'
   resources :rooms do
     collection do
       get :search

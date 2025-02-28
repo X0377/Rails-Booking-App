@@ -6,6 +6,7 @@ class RoomsController < ApplicationController
     @rooms = user_signed_in? ? current_user.rooms : Room.all
   end
 
+  # ログインしてると検索結果に施設が表示されない
   def search
     @rooms = user_signed_in? ? current_user.rooms : Room.all
 
@@ -17,7 +18,7 @@ class RoomsController < ApplicationController
       @rooms = @rooms.where("address LIKE?", "%#{params[:area]}%")
     end
 
-    render :index
+    render :search_results
   end
 
   def new
@@ -40,21 +41,6 @@ class RoomsController < ApplicationController
   end
 
   def edit
-  end
-
-  def search
-    @rooms = Room.all
-
-    if params[:keyword].present?
-      @rooms = @rooms.where("name LIKE ? OR address LIKE ? OR description LIKE ?", 
-                            "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
-    end
-
-    if params[:area].present?
-      @rooms = @rooms.where("address LIKE ?", "%#{params[:area]}%")
-    end
-
-    render :index
   end
 
   def update

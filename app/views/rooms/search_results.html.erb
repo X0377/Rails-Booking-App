@@ -1,0 +1,52 @@
+<div class="search-results-page">
+  <div class="compact-search-container">
+    <%= form_with url: search_rooms_path, method: :get, local: true do |f| %>
+    <div class="compact-search-box">
+      <%= f.text_field :keyword, placeholder: "施設名や住所を入力" %>
+
+      <p>OR</p>
+
+      <%= f.select :area, ["東京", "大阪", "京都", "札幌"], include_blank: "エリア選択" %>
+
+      <%= f.submit "検索", class: "search-button" %>
+    </div>
+    <% end %>
+  </div>
+
+  <% if @rooms.present? %>
+  <div class="results-container">
+    <p class="results-count"><%= @rooms.count %>件が見つかりました。</p>
+
+    <div class="rooms-grid">
+      <% @rooms.each do |room| %>
+      <div class="room">
+        <% if room.image.present? %>
+        <%= image_tag room.image.url, class: "room-image" %>
+        <% else %>
+        <%= image_tag "default-room-image.png", class: "room-image" %>
+        <% end %>
+
+        <div class="room-info">
+          <h3><%= room.name %></h3>
+          <p><%= room.address %></p>
+
+          <p><%= truncate(room.description, length: 80) %></p>
+
+          <div class="room-price">
+            ¥<%= number_with_delimiter(room.price) %>〜
+          </div>
+
+          <%= link_to "詳細はこちら", room_path(room) %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% else %>
+  <div class="no-results">
+    <h3>条件に一致する施設が見つかりませんでした</h3>
+    <p>検索条件を変更して、再度お試しください。</p>
+  </div>
+  <% end %>
+</div>
+</div>
