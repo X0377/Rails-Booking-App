@@ -1,24 +1,45 @@
-# README
+# 🏨 Booking App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 🔍 Overview
+The Booking App is a Ruby on Rails application that allows users to register accommodations and make reservations. It provides management, search, and reservation features to facilitate a smooth booking experience.
 
-Things you may want to cover:
+## 🚀 Features
+### 📝 **Implemented Features**
+- 👤 **User Authentication**
+  - User login, logout, and registration using Devise
+  - Profile editing (name, bio, profile image)
 
-* Ruby version
+- 🏨 **Accommodation Management**
+  - CRUD operations for accommodations (create, update, delete, list, and detail view)
+  - Image upload using Active Storage
+  - Only the accommodation owner can edit or delete
 
-* System dependencies
+- 🔍 **Search Functionality**
+  - Keyword search (name, address, description)
+  - Area-based search (Tokyo, Osaka, Kyoto, Sapporo)
 
-* Configuration
+- 📅 **Reservation System** (In Progress)
+  - Users can book accommodations (check-in, check-out, guest count)
+  - View reservation list and reservation details
+  - Calculate total accommodation cost (number of nights × price per night)
 
-* Database creation
+## 🛠 Technologies Used
+- 🛠 **Ruby on Rails 6.1.3.2**
+- 🎨 **Bootstrap (or Tailwind CSS)**
+- 💾 **SQLite** (Development Environment)
+- 🔐 **Devise** (User Authentication)
+- 📷 **Active Storage** (Image Upload)
 
-* Database initialization
+## 🔧 Setup
+To run this project locally, follow these steps:
+```sh
+git clone https://github.com/X0377/Rails-Booking-App.git
+cd booking_app
+bundle install
+rails db:create db:migrate
+rails s
+```
+Then, open `http://localhost:3000` in your browser.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 🎠 License
+This project is licensed under the MIT License.
