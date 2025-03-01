@@ -1,13 +1,42 @@
-<h2>予約一覧</h2>
-
-<% @reservations.each do |reservation| %>
-<div>
-  <h3><%= reservation.room.name %></h3>
-  <p>チェックイン: <%= reservation.check_in %></p>
-  <p>チェックアウト: <%= reservation.check_out %></p>
-  <p>宿泊人数: <%= reservation.guest_count %></p>
-  <%= link_to "詳細を見る", room_reservation_path(reservation.room, reservation) %>
+<div class="reservations-list-container">
+  <h2>予約一覧</h2>
+  <% if @reservations.any? %>
+  <div class="reservations-grid">
+    <% @reservations.each do |reservation| %>
+    <div class="reservation-card">
+      <% if reservation.room.image.attached? %>
+      <%= image_tag reservation.room.image, class: "room-image" %>
+      <% else %>
+      <%= image_tag "default-room-image.png", class: "room-image" %>
+      <% end %>
+      <div class="reservation-details">
+        <h3><%= reservation.room.name %></h3>
+        <div class="dates">
+          <%= reservation.check_in %> 〜 <%= reservation.check_out %>
+          <div class="stay-length">(<%= (reservation.check_out - reservation.check_in).to_i %>泊)</div>
+        </div>
+        <div class="guests">
+          宿泊人数：<%= reservation.guest_count %>名
+        </div>
+        <div class="price">
+          料金：¥<%= number_with_delimiter(reservation.room.price * (reservation.check_out - reservation.check_in).to_i) %>
+        </div>
+        <span class="status confirmed">確認済み</span>
+        <div class="actions">
+          <%= link_to "詳細を見る", room_reservation_path(reservation.room, reservation) %>
+          <%= link_to "キャンセル", room_reservation_path(reservation.room, reservation), method: :delete, data: { confirm: "本当にキャンセルしますか？" }, class: "cancel-link" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <% else %>
+  <div class="no-reservations">
+    <p>予約がありません。新しい施設を予約してみましょう。</p>
+    <%= link_to "施設を探す", rooms_path, class: "btn" %>
+  </div>
+  <% end %>
+  <div class="back-action">
+    <%= link_to "宿泊施設一覧に戻る", root_path, class: "btn btn-outline" %>
+  </div>
 </div>
-<% end %>
-
-<%= link_to "宿泊施設一覧に戻る", root_path %>

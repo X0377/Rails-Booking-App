@@ -71,11 +71,15 @@ header {
   position: absolute;
   right: 0;
   background-color: #223459;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1000;
   border-radius: 4px;
   overflow: hidden;
+}
+
+.log-out {
+  background-color: #30618C;
 }
 
 .dropdown-content a {

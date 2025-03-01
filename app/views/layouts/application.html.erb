@@ -12,6 +12,7 @@
   <%= stylesheet_link_tag 'rooms', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'users', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'device', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'reservations', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,8 +37,18 @@
           <% end %>
         </div>
         <div class="dropdown-content" id="dropdownMenu">
+          <%= link_to "予約一覧", user_path(current_user) %>
+          <!-- リンクパス考える -->
+          <%= link_to "My施設一覧", user_path(current_user) %>
+          <!-- リンクパス考える -->
+          <%= link_to "My施設新規登録", user_path(current_user) %>
+          <!-- リンクパス考える -->
           <%= link_to "プロフィール", user_path(current_user) %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to "アカウント設定", user_path(current_user) %>
+          <!-- リンクパス考える -->
+          <div class="log-out">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </div>
         </div>
       </div>
       <% else %>

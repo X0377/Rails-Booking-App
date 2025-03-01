@@ -1,19 +1,11 @@
 <div class="room-detail-container">
   <div class="room-header">
     <% if @room.image.attached? %>
-    <div>
-      <%= image_tag @room.image %>
-      <!-- サイズどうする？ -->
-    </div>
+    <%= image_tag @room.image %>
     <% else %>
     <%= image_tag "default-room-image.png" %>
     <% end %>
-
-    <div class="field">
-      <div class="form-value">
-        <h1><%= @room.name %></h1>
-      </div>
-    </div>
+    <h1><%= @room.name %></h1>
   </div>
 
   <div class="room-detail-info">
@@ -45,7 +37,6 @@
     <% else %>
     <%= link_to "ログインして予約", new_user_session_path, class: "btn btn-secondary" %>
     <% end %>
-
     <%= link_to '編集', edit_room_path(@room) %>
     <%= link_to '削除', room_path(@room), method: :delete, data: { confirm: "本当に削除しますか？" } %>
     <%= link_to '一覧に戻る', rooms_path %>
