@@ -1,21 +1,41 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: space-between;
   background-color: rgba(34, 52, 89, 0.8);
   padding: 10px;
   height: 60px;
+  font-family: "Kiwi Maru", serif;
 }
 
-.header-menu a {
+.header-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.top-link {
+  text-decoration: none;
+}
+
+.top-link-text {
   color: white;
-  padding: 10px 15px;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.login-text {
+  margin-left: auto;
+  color: white;
+  padding: 10px 20px;
   text-decoration: none;
   font-weight: bold;
 }
 
 .header-button {
-  display: inline-block;
   padding: 10px 15px;
   background-color: #F0CCC5;
   color: #223459;
@@ -30,6 +50,7 @@ header {
   transform: scale(1.05);
 }
 
+/* アイコンドロップダウン */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -76,14 +97,20 @@ body {
   min-height: 100vh;
   margin: 0;
   color: white;
+  font-family: "Kiwi Maru", serif;
+  font-size: 20px;
 }
 
 input, select, button {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Kiwi Maru", serif;
+  font-size: 20px;
+  font-weight: bold;
 }
 
+/* 検索関連 */
 .search-container {
   display: flex;
   flex-direction: column;
@@ -131,13 +158,12 @@ select {
 
 .search-button {
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   background-color: #F0CCC5;
   color: #223459;
   border: none;
+  font-size: 25px;
   border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s;
 }

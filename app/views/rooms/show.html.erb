@@ -1,49 +1,53 @@
-<h1>施設詳細</h1>
+<div class="room-detail-container">
+  <div class="room-header">
+    <% if @room.image.attached? %>
+    <div>
+      <%= image_tag @room.image %>
+      <!-- サイズどうする？ -->
+    </div>
+    <% else %>
+    <%= image_tag "default-room-image.png" %>
+    <% end %>
 
-<% if @room.image.attached? %>
-<div>
-  <%= image_tag @room.image %>
-  <!-- サイズどうする？ -->
-</div>
-<% else %>
-<%= image_tag "default-room-image.png" %>
-<p>画像がありません</p>
-<% end %>
+    <div class="field">
+      <div class="form-value">
+        <h1><%= @room.name %></h1>
+      </div>
+    </div>
+  </div>
 
-<div class="field">
-  <label>施設名</label>
-  <div class="form-value">
-    <%= @room.name %>
+  <div class="room-detail-info">
+    <div class="field">
+      <label>詳細</label>
+      <div class="form-value">
+        <%= @room.description %>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>料金</label>
+      <div class="form-value">
+        ¥<%= number_with_delimiter(@room.price) %> /泊
+      </div>
+    </div>
+
+    <div class="field">
+      <label>住所</label>
+      <div class="form-value">
+        <%= @room.address %>
+      </div>
+    </div>
+  </div>
+
+  <div class="room-detail-actions">
+    <% if user_signed_in? %>
+    <%= link_to "この施設を予約する", new_room_reservation_path(@room), class: "btn btn-primary" %>
+    <% else %>
+    <%= link_to "ログインして予約", new_user_session_path, class: "btn btn-secondary" %>
+    <% end %>
+
+    <%= link_to '編集', edit_room_path(@room) %>
+    <%= link_to '削除', room_path(@room), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+    <%= link_to '一覧に戻る', rooms_path %>
   </div>
 </div>
-
-<div class="field">
-  <label>詳細</label>
-  <div class="form-value">
-    <%= @room.description %>
-  </div>
-</div>
-
-<div class="field">
-  <label>料金</label>
-  <div class="form-value">
-    ¥<%= number_with_delimiter(@room.price) %> /泊
-  </div>
-</div>
-
-<div class="field">
-  <label>住所</label>
-  <div class="form-value">
-    <%= @room.address %>
-  </div>
-</div>
-
-<% if user_signed_in? %>
-<%= link_to "この施設を予約する", new_room_reservation_path(@room), class: "btn btn-primary" %>
-<% else %>
-<%= link_to "ログインして予約", new_user_session_path, class: "btn btn-secondary" %>
-<% end %>
-
-<%= link_to '編集', edit_room_path(@room) %>
-<%= link_to '削除', room_path(@room), method: :delete, data: { confirm: "本当に削除しますか？" } %>
-<%= link_to '一覧に戻る', rooms_path %>

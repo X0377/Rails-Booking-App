@@ -1,13 +1,27 @@
-<h2><%= @user.name %> さんのプロフィール</h2>
+<div class="profile-container">
+  <h2>プロフィール</h2>
 
-<% if @user.avatar.attached? %>
-<%= image_tag @user.avatar, size: "100x100", class: "rounded-circle" %>
-<% else %>
-<%= image_tag "default-avatar-image.png", size: "100x100", class: "rounded-circle" %>
-<% end %>
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, size: "100x100", class: "rounded-circle" %>
+      <% else %>
+      <%= image_tag "default-avatar-image.png", size: "100x100", class: "rounded-circle" %>
+      <% end %>
+    </div>
 
-<p><%= @user.profile.presence || "プロフィール未設定" %></p>
+    <div class="profile-name">
+      <%= @user.name %>
+    </div>
+  </div>
 
-<% if @user == current_user %>
-<%= link_to "プロフィールを編集", edit_user_path(@user) %>
-<% end %>
+  <div class="profile-info">
+    <p><%= @user.profile.presence || "プロフィール未設定" %></p>
+  </div>
+
+  <% if @user == current_user %>
+  <div class="profile-actions">
+    <%= link_to "プロフィールを編集", edit_user_path(@user) %>
+  </div>
+  <% end %>
+</div>

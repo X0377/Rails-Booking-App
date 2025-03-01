@@ -3,12 +3,13 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
 
   def index
-    @rooms = user_signed_in? ? current_user.rooms : Room.all
+    @rooms = user_signed_in? ? current_user.rooms : []
   end
 
   # ログインしてると検索結果に施設が表示されない
   def search
-    @rooms = user_signed_in? ? current_user.rooms : Room.all
+    # 検索結果ページでは、すべての施設を対象にする（自分・他人問わず）
+    @rooms = Room.all
 
     if params[:keyword].present?
       @rooms = @rooms.where("name LIKE :keyword OR address LIKE :keyword OR description LIKE :keyword", keyword: "%#{params[:keyword]}%")
