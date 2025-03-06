@@ -6,10 +6,6 @@
     <% else %>
     <%= image_tag "default-room-image.png", class: "room-image" %>
     <% end %>
-    <div class="reservation-status">
-      <span class="status confirmed">確認済み</span>
-      <h3><%= @reservation.room.name %></h3>
-    </div>
   </div>
   <div class="reservation-details">
     <div class="detail-row">

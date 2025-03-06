@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
-    resources :reservations, only: [:new, :create, :index, :show, :destroy]
+    resources :reservations, only: [:new, :create, :index, :show, :destroy] do
+      collection do
+        post :confirm
+      end
+    end
   end
 end

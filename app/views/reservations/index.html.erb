@@ -21,7 +21,6 @@
         <div class="price">
           料金：¥<%= number_with_delimiter(reservation.room.price * (reservation.check_out - reservation.check_in).to_i) %>
         </div>
-        <span class="status confirmed">確認済み</span>
         <div class="actions">
           <%= link_to "詳細を見る", room_reservation_path(reservation.room, reservation) %>
           <%= link_to "キャンセル", room_reservation_path(reservation.room, reservation), method: :delete, data: { confirm: "本当にキャンセルしますか？" }, class: "cancel-link" %>
@@ -32,7 +31,7 @@
   </div>
   <% else %>
   <div class="no-reservations">
-    <p>予約がありません。新しい施設を予約してみましょう。</p>
+    <p>予約がありません。新しい施設を予約してみましょう</p>
     <%= link_to "施設を探す", rooms_path, class: "btn" %>
   </div>
   <% end %>

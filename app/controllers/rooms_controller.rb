@@ -6,7 +6,6 @@ class RoomsController < ApplicationController
     @rooms = user_signed_in? ? current_user.rooms : []
   end
 
-  # ログインしてると検索結果に施設が表示されない
   def search
     # 検索結果ページでは、すべての施設を対象にする（自分・他人問わず）
     @rooms = Room.all

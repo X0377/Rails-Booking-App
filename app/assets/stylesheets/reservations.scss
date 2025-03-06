@@ -1,4 +1,4 @@
-/* ===== 予約詳細ページ ===== */
+// 予約詳細ページ
 .reservation-detail-container {
   max-width: 800px;
   margin: 40px auto;
@@ -90,7 +90,7 @@
   margin-top: 10px;
   padding-top: 20px;
   border-top: 1px solid #ddd;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -156,6 +156,21 @@
 .btn.btn-secondary:hover {
   background-color: #d5d5d5;
 }
+
+// 予約確認画面のアクションボタン
+.form-actions {
+  margin-bottom: 10px;
+}
+
+.submit-button.back-button {
+  background-color: #e0e0e0;
+  color: #424242;
+}
+
+.submit-button.back-button:hover {
+  background-color: #d5d5d5;
+}
+
 
 // 予約一覧
 .reservations-list-container {
@@ -224,13 +239,6 @@
   margin-top: 3px;
   font-size: 13px;
   color: #888;
-}
-
-.reservation-details .guests,
-.reservation-details .price {
-  margin: 8px 0;
-  font-size: 14px;
-  color: #666;
 }
 
 .reservation-details .price {
@@ -360,28 +368,7 @@
   box-shadow: 0 0 5px rgba(48, 97, 140, 0.3);
 }
 
-.reservation-form-container .price-summary {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 25px;
-}
-
-.reservation-form-container .price-summary .price-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.reservation-form-container .price-summary .price-row.total {
-  font-weight: bold;
-  font-size: 18px;
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-  margin-top: 10px;
-}
-
-.reservation-form-container input[type="submit"] {
+.reservation-form-container .submit-button {
   width: 100%;
   padding: 14px;
   background-color: #F0CCC5;
@@ -394,7 +381,7 @@
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.reservation-form-container input[type="submit"]:hover {
+.reservation-form-container .submit-button :hover {
   background-color: #e6bab2;
   transform: translateY(-2px);
 }
@@ -405,10 +392,20 @@
   text-align: center;
   color: #30618C;
   text-decoration: none;
+  background: none;
+  border: none;
+  width: auto;
+  margin: 20px auto 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: normal;
+  cursor: pointer;
 }
 
 .reservation-form-container .back-link:hover {
   text-decoration: underline;
+  background: none;
+  transform: none;
 }
 
 // レスポンシブ対応
@@ -419,16 +416,16 @@
     margin: 30px 15px;
     padding: 20px;
   }
-  
+
   .reservation-actions {
     flex-direction: column;
   }
-  
+
   .reservation-actions .btn {
     width: 100%;
     margin-bottom: 10px;
   }
-  
+
   .reservations-grid {
     grid-template-columns: 1fr;
   }
@@ -440,7 +437,7 @@
   .reservation-form-container h2 {
     font-size: 22px;
   }
-  
+
   .reservation-summary .reservation-status h3 {
     font-size: 20px;
   }

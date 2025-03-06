@@ -1,31 +1,26 @@
 <div class="reservation-form-container">
   <h2>予約する</h2>
-  <%= form_with(model: [@room, @reservation], local: true) do |f| %>
+
+  <%= form_with(model: [@room, @reservation], url: confirm_room_reservations_path(@room), method: :post, local: true) do |f| %>
   <div class="form-group">
     <%= f.label :check_in, "チェックイン日" %>
     <%= f.date_field :check_in, required: true, class: "date-input", id: "check_in_date" %>
   </div>
+
   <div class="form-group">
     <%= f.label :check_out, "チェックアウト日" %>
     <%= f.date_field :check_out, required: true, class: "date-input", id: "check_out_date" %>
   </div>
+
   <div class="form-group">
     <%= f.label :guest_count, "宿泊人数" %>
     <%= f.number_field :guest_count, required: true, min: 1, value: 1 %>
   </div>
 
-  <!-- 料金の計算結果を表示するセクション -->
-  <div class="price-summary">
-    <div class="price-row">
-      <span>宿泊料金：</span>
-      <span>¥<%= number_with_delimiter(@room.price) %> × <span id="nights">0</span>泊</span>
-    </div>
-    <div class="price-row total">
-      <span>合計：</span>
-      <span id="total-price">¥0</span>
-    </div>
+  <div class="form-actions">
+    <%= f.submit "予約内容を確認する", class: "submit-button" %>
   </div>
-  <%= f.submit "予約する" %>
-  <% end %>
+
   <%= link_to "戻る", room_path(@room), class: "back-link" %>
+  <% end %>
 </div>

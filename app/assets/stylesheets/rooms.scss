@@ -192,6 +192,29 @@
   color: #666666;
 }
 
+.no-results .btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+
+  &.btn-primary {
+    background-color: #F0CCC5;
+    color: #223459;
+    flex: 1;
+
+    &:hover {
+      background-color: #e6bab2;
+      transform: translateY(-2px);
+    }
+  }
+}
+
 // レスポンシブデザイン
 @media (max-width: 768px) {
   .compact-search-container {
@@ -222,7 +245,7 @@
 
 .room-header {
   margin-bottom: 30px;
-  
+
   img {
     width: 100%;
     height: 400px;
@@ -231,7 +254,7 @@
     margin-bottom: 20px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   }
-  
+
   h1 {
     font-size: 32px;
     color: #223459;
@@ -243,10 +266,10 @@
 
 .room-detail-info {
   margin-bottom: 30px;
-  
+
   .field {
     margin-bottom: 20px;
-    
+
     label {
       display: block;
       font-size: 18px;
@@ -254,7 +277,7 @@
       color: #30618C;
       margin-bottom: 8px;
     }
-    
+
     .form-value {
       font-size: 16px;
       line-height: 1.6;
@@ -269,7 +292,7 @@
   gap: 15px;
   padding-top: 20px;
   border-top: 1px solid #eee;
-  
+
   .btn {
     padding: 12px 25px;
     font-size: 16px;
@@ -277,28 +300,28 @@
     border-radius: 6px;
     transition: all 0.3s ease;
     text-align: center;
-    
+
     &.btn-primary {
       background-color: #F0CCC5;
       color: #223459;
-      
+
       &:hover {
         background-color: #e6bab2;
         transform: translateY(-2px);
       }
     }
-    
+
     &.btn-secondary {
       background-color: #30618C;
       color: white;
-      
+
       &:hover {
         background-color: #264c6f;
         transform: translateY(-2px);
       }
     }
   }
-  
+
   a {
     display: inline-block;
     padding: 8px 15px;
@@ -306,10 +329,9 @@
     text-decoration: none;
     border-radius: 4px;
     transition: all 0.2s;
-    
+
     &:hover {
       background-color: rgba(48, 97, 140, 0.1);
-      text-decoration: underline;
     }
   }
 }
@@ -323,7 +345,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   color: #223459;
-  
+
   h2 {
     font-size: 28px;
     color: #223459;
@@ -332,11 +354,11 @@
     border-bottom: 2px solid #F0CCC5;
     text-align: center;
   }
-  
+
   form {
     .form-group {
       margin-bottom: 25px;
-      
+
       label {
         display: block;
         font-size: 16px;
@@ -344,31 +366,32 @@
         margin-bottom: 8px;
         color: #30618C;
       }
-      
+
       input[type="text"],
       input[type="number"],
-      textarea {
+      textarea,
+      input[type="file"] {
         width: 100%;
         padding: 12px;
         border: 1px solid #ddd;
         border-radius: 6px;
         font-size: 16px;
-        
+
         &:focus {
           border-color: #30618C;
           outline: none;
           box-shadow: 0 0 5px rgba(48, 97, 140, 0.3);
         }
       }
-      
+
       textarea {
         min-height: 150px;
         resize: vertical;
       }
-      
+
       .image-preview {
         margin-top: 10px;
-        
+
         img {
           max-width: 100%;
           max-height: 200px;
@@ -376,35 +399,86 @@
         }
       }
     }
-    
-    .submit-button {
-      width: 100%;
-      padding: 14px;
-      background-color: #F0CCC5;
-      color: #223459;
-      border: none;
-      border-radius: 6px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-      
-      &:hover {
-        background-color: #e6bab2;
-        transform: translateY(-2px);
+
+    .form-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+
+        &.btn-primary {
+          background-color: #F0CCC5;
+          color: #223459;
+          flex: 1;
+
+          &:hover {
+            background-color: #e6bab2;
+            transform: translateY(-2px);
+          }
+        }
+      }
+
+      a {
+        display: inline-block;
+        padding: 8px 15px;
+        color: #30618C;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.2s;
+
+        &:hover {
+          background-color: rgba(48, 97, 140, 0.1);
+          text-decoration: none;
+        }
       }
     }
   }
-  
+
   .back-link {
     display: block;
     margin-top: 20px;
     text-align: center;
     color: #30618C;
     text-decoration: none;
-    
+
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+// エラーメッセージスタイル
+.error-messages {
+  background-color: #fff5f5;
+  border-left: 4px solid #dc3545;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 4px;
+
+  h4 {
+    color: #dc3545;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+
+    li {
+      color: #6c1d24;
+      margin-bottom: 5px;
+      font-size: 14px;
     }
   }
 }
@@ -418,21 +492,21 @@
     margin: 30px 15px;
     padding: 20px;
   }
-  
+
   .room-header img {
     height: 250px;
   }
-  
+
   .room-detail-actions {
     flex-direction: column;
     gap: 10px;
-    
+
     .btn, a {
       width: 100%;
       text-align: center;
     }
   }
-  
+
   .reservations-grid {
     grid-template-columns: 1fr;
   }
@@ -442,7 +516,7 @@
   .room-header h1 {
     font-size: 24px;
   }
-  
+
   .reservation-form-container h2,
   .reservations-list-container h2,
   .room-form-container h2 {

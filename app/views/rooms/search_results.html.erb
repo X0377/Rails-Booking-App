@@ -15,7 +15,7 @@
 
   <% if @rooms.present? %>
   <div class="results-container">
-    <p class="results-count"><%= @rooms.count %>件が見つかりました。</p>
+    <p class="results-count"><%= @rooms.count %>件見つかりました</p>
 
     <div class="rooms-grid">
       <% @rooms.each do |room| %>
@@ -45,7 +45,7 @@
   <% else %>
   <div class="no-results">
     <h3>条件に一致する施設が見つかりませんでした</h3>
-    <p>検索条件を変更して、再度お試しください。</p>
+    <p>検索条件を変更して再度お試しください</p>
   </div>
   <% end %>
 </div>

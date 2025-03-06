@@ -1,26 +1,62 @@
-<h2>施設を登録する</h2>
+<div class="room-form-container">
+  <h2>My施設を新規登録する</h2>
 
-<%= form_with(model: @room, local: true) do |f| %>
-<div>
-  <%= f.label :name, '施設名' %>
-  <%= f.text_field :name, required: true %>
+  <%= form_with(model: @room, local: true) do |f| %>
+  <% if @room.errors.any? %>
+  <div class="error-messages">
+    <h4><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h4>
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, "施設名" %>
+    <%= f.text_field :name, required: true, placeholder: "例：山の家キャビン" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "施設の説明" %>
+    <%= f.text_area :description, required: true, placeholder: "施設の特徴や設備などを記入してください" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, "料金" %>
+    <%= f.number_field :price, required: true, min: 1, placeholder: "1泊あたりの料金" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address, required: true, placeholder: "例：東京都新宿区西新宿1-1-1" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, "施設画像" %>
+    <%= f.file_field :image, onchange: "previewImage(this);" %>
+    <div id="image-preview" class="image-preview"></div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "登録する", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", rooms_path %>
+  </div>
+  <% end %>
 </div>
 
-<div>
-  <%= f.label :description, '施設の説明' %>
-  <%= f.text_area :description, required: true %>
-</div>
+<script>
+  function previewImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
 
-<div>
-  <%= f.label :price, '料金' %>
-  <%= f.number_field :price, required: true, min: 1 %>
-</div>
+      reader.onload = function(e) {
+        var preview = document.getElementById('image-preview');
+        preview.innerHTML = '<img src="' + e.target.result + '" alt="プレビュー">';
+      }
 
-
-<div>
-  <%= f.label :image, '施設画像' %>
-  <%= f.file_field :image %>
-</div>
-
-<%= f.submit '登録する' %>
-<% end %>
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
