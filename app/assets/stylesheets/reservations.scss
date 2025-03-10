@@ -32,47 +32,10 @@
   margin-bottom: 15px;
 }
 
-.reservation-status {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.reservation-status h3 {
-  font-size: 24px;
-  margin: 0;
-  color: #223459;
-}
-
-.status {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-  align-self: flex-start;
-}
-
-.status.confirmed {
-  background-color: #e6f7e9;
-  color: #2e7d32;
-}
-
-.status.pending {
-  background-color: #fff8e1;
-  color: #ff8f00;
-}
-
-.status.cancelled {
-  background-color: #ffebee;
-  color: #c62828;
-}
-
 .reservation-details {
   background-color: #f9f9f9;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 30px;
 }
 
 .detail-row {
@@ -231,7 +194,7 @@
 
 .reservation-details .dates {
   margin: 10px 0 5px;
-  font-size: 14px;
+  font-size: 18px;
   color: #666;
 }
 
@@ -241,18 +204,15 @@
   color: #888;
 }
 
-.reservation-details .price {
+.reservation-details .guests {
   font-weight: bold;
-  margin-bottom: 12px;
+  font-size: 18px;
 }
 
-.reservation-details .status {
-  display: inline-block;
-  margin: 5px 0 10px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
+.reservation-details .price {
   font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 12px;
 }
 
 .reservation-details .actions {
@@ -273,6 +233,11 @@
 
 .reservation-details .actions a.cancel-link {
   color: #c62828;
+}
+
+.reservation-created-time {
+  font-size: 13px;
+  color: #666;
 }
 
 .no-reservations {

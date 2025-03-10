@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
   end
 
   def search
-    # 検索結果ページでは、すべての施設を対象にする（自分・他人問わず）
+    # 検索結果ページではすべての施設を対象にする
     @rooms = Room.all
 
     if params[:keyword].present?
@@ -31,7 +31,6 @@ class RoomsController < ApplicationController
 
     if @room.save
       redirect_to @room, notice: "施設を登録しました"
-      # :roomだと /rooms の一覧ページへリダイレクトするので要チェック
     else
       render :new
     end
@@ -44,6 +43,10 @@ class RoomsController < ApplicationController
   end
 
   def update
+    if params[:room][:remove_image] == '1' && @room.image.attached?
+      @room.image.purge
+    end
+
     if @room.update(room_params)
       redirect_to @room, notice: "施設情報を更新しました"
     else

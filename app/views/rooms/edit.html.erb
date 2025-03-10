@@ -1,5 +1,5 @@
 <div class="room-form-container">
-  <h2>My施設を新規登録する</h2>
+  <h2>My施設情報を編集する</h2>
   <%= form_with(model: @room, local: true) do |f| %>
   <% if @room.errors.any? %>
   <div class="error-messages">
@@ -47,10 +47,10 @@
         <% end %>
       </div>
 
-      <div id="remove-image-option" style="display: none;" class="mb-3 text-center">
-        <a href="javascript:void(0);" onclick="removePreview()" class="simple-link">
+      <div id="remove-image-option" style="display: none;">
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="removePreview()">
           プレビュー画像を削除
-        </a>
+        </button>
       </div>
 
       <% if @room.image.attached? %>
@@ -63,32 +63,22 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit "登録する", class: "btn btn-primary" %>
-    <%= link_to "キャンセル", rooms_path %>
+    <%= f.submit "更新する", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", @room %>
   </div>
   <% end %>
+</div>
 </div>
 
 <script>
   function previewImage(input) {
-    var preview = document.getElementById('image-preview');
-
     if (input.files && input.files[0]) {
       var reader = new FileReader();
       reader.onload = function(e) {
-        preview.innerHTML = '<img src="' + e.target.result + '" alt="プレビュー" class="img-fluid" style="max-height: 200px;">';
-        document.getElementById('remove-image-option').style.display = 'block';
+        var preview = document.getElementById('image-preview');
+        preview.innerHTML = '<img src="' + e.target.result + '" alt="プレビュー">';
       }
       reader.readAsDataURL(input.files[0]);
-    } else {
-      preview.innerHTML = '<p class="text-muted">画像をアップロードするとここにプレビューが表示されます</p>';
-      document.getElementById('remove-image-option').style.display = 'none';
     }
-  }
-
-  function removePreview() {
-    document.getElementById('image-preview').innerHTML = '<p class="text-muted">画像をアップロードするとここにプレビューが表示されます</p>';
-    document.getElementById('remove-image-option').style.display = 'none';
-    document.querySelector('input[type="file"]').value = '';
   }
 </script>

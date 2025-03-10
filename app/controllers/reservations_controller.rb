@@ -30,8 +30,7 @@ class ReservationsController < ApplicationController
 
     # 料金計算（泊数 × 部屋の料金）
     nights = (@reservation.check_out.to_date - @reservation.check_in.to_date).to_i
-    @total_price = nights * @room.price
-
+    @total_price = nights * @reservation.guest_count * @room.price
     render :confirm
   end
 
@@ -39,7 +38,6 @@ class ReservationsController < ApplicationController
     @reservation = @room.reservations.build(reservation_params)
     @reservation.user = current_user
 
-    # 「戻る」ボタンが押された場合
     if params[:back]
       render :new
       return

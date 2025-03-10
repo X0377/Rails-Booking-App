@@ -4,7 +4,7 @@
     <div class="room-summary">
       <h3><%= @room.name %></h3>
       <% if @room.image.present? %>
-      <%= image_tag @room.image.url, class: "room-thumbnail" %>
+      <%= image_tag @room.image, class: "room-thumbnail" %>
       <% end %>
     </div>
     <div class="reservation-summary">

@@ -8,7 +8,7 @@
   align-items: center;
   max-width: 500px;
   margin: 30px auto;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: rgba(34, 52, 89, 0.8);
   border-radius: 8px;
   backdrop-filter: blur(10px);
@@ -454,9 +454,71 @@
       text-decoration: underline;
     }
   }
+
+    // 画像関連
+  .image-upload-container {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .image-preview {
+    margin-bottom: 15px;
+    text-align: center;
+
+    img {
+      max-height: 200px;
+      max-width: 100%;
+    }
+
+    .text-muted {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+  }
+
+  // チェックボックスと文字を同じ行に表示
+  .image-remove-option {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+      margin-top: 0;
+    }
+
+    label.remove-image-label,
+    label[for="remove_image_checkbox"] {
+      margin-bottom: 0;
+      line-height: 1.2;
+      vertical-align: middle;
+    }
+  }
+
+  // プレビュー削除
+  #remove-image-option {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  a {
+    display: inline-block;
+    padding: 8px 15px;
+    color: #30618C;
+    font-size: medium;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-// エラーメッセージスタイル
+// エラーメッセージ
 .error-messages {
   background-color: #fff5f5;
   border-left: 4px solid #dc3545;

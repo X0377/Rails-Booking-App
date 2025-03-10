@@ -21,7 +21,7 @@
       <% @rooms.each do |room| %>
       <div class="room">
         <% if room.image.present? %>
-        <%= image_tag room.image.url, class: "room-image" %>
+        <%= image_tag room.image, class: "room-image" %>
         <% else %>
         <%= image_tag "default-room-image.png", class: "room-image" %>
         <% end %>

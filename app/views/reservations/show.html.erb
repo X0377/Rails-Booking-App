@@ -24,6 +24,11 @@
       <div class="detail-label">宿泊人数</div>
       <div class="detail-value"><%= @reservation.guest_count %>名</div>
     </div>
+    <div class="detail-row">
+      <div class="detail-label">予約確定日時</div>
+      <div class="detail-value"><%= @reservation.created_at.strftime("%Y-%m-%d %H:%M") %>
+      </div>
+    </div>
     <div class="detail-row price">
       <div class="detail-label">合計料金</div>
       <div class="detail-value">¥<%= number_with_delimiter(@reservation.room.price * (@reservation.check_out - @reservation.check_in).to_i) %></div>
