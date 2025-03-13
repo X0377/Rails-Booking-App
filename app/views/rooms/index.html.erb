@@ -45,13 +45,12 @@
         <%= image_tag "default-room-image.png", class: "room-image" %>
         <% end %>
         <div class="room-info">
-          <h3><%= room.name %></h3>
+          <h3><%= link_to room.name, room_path(room), class: "room-name-link" %></h3>
           <p><%= room.address %></p>
           <p><%= truncate(room.description, length: 80) %></p>
           <div class="room-price">
             ¥<%= number_with_delimiter(room.price) %>〜
           </div>
-          <%= link_to "詳細はこちら", room_path(room) %>
         </div>
       </div>
       <% end %>
@@ -78,16 +77,23 @@
         <%= image_tag "default-room-image.png", class: "room-image" %>
         <% end %>
         <div class="room-info">
-          <h3><%= room.name %></h3>
+          <h3><%= link_to room.name, room_path(room), class: "room-name-link" %></h3>
           <p><%= room.address %></p>
           <p><%= truncate(room.description, length: 80) %></p>
           <div class="room-price">
             ¥<%= number_with_delimiter(room.price) %>〜
           </div>
-          <%= link_to "詳細はこちら", room_path(room) %>
         </div>
       </div>
       <% end %>
+
+      <div class="new-room">
+        <%= link_to new_room_path do %>
+        <div class="new-room-content">
+          <p>新しいMy施設を登録</p>
+        </div>
+        <% end %>
+      </div>
 
       <% else %>
       <div class="no-results">

@@ -1,6 +1,20 @@
 <div class="reservation-form-container">
   <h2>予約する</h2>
 
+  <!-- エラーメッセージの表示は要修正 -->
+  <%= form_with(model: [@room, @reservation], local: true, url: confirm_room_reservations_path(@room)) do |form| %>
+  <% if @reservation.errors.any? %>
+  <div class="error-messages">
+    <h2><%= pluralize(@reservation.errors.count, "個") %>のエラーがあります：</h2>
+    <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <% end %>
+
   <%= form_with(model: [@room, @reservation], url: confirm_room_reservations_path(@room), method: :post, local: true) do |f| %>
   <div class="form-group">
     <%= f.label :check_in, "チェックイン日" %>

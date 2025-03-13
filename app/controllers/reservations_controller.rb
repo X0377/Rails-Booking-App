@@ -22,16 +22,14 @@ class ReservationsController < ApplicationController
     @reservation = @room.reservations.build(reservation_params)
     @reservation.user = current_user
 
-    # 日程の妥当性チェック
-    if @reservation.invalid?
+    unless @reservation.valid?
       render :new
       return
     end
 
-    # 料金計算（泊数 × 部屋の料金）
+    # 料金計算（泊数 × 人数 × 部屋の料金）
     nights = (@reservation.check_out.to_date - @reservation.check_in.to_date).to_i
     @total_price = nights * @reservation.guest_count * @room.price
-    render :confirm
   end
 
   def create
