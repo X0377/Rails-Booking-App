@@ -1,0 +1,45 @@
+<div class="reservation-detail-container">
+  <h2>予約詳細</h2>
+  <div class="reservation-summary">
+    <% if @reservation.room.image.attached? %>
+    <%= image_tag @reservation.room.image, class: "room-image" %>
+    <% else %>
+    <%= image_tag "default-room-image.png", class: "room-image" %>
+    <% end %>
+  </div>
+  <div class="reservation-details">
+    <div class="detail-row">
+      <div class="detail-label">チェックイン</div>
+      <div class="detail-value"><%= @reservation.check_in %></div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">チェックアウト</div>
+      <div class="detail-value"><%= @reservation.check_out %></div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">宿泊日数</div>
+      <div class="detail-value"><%= (@reservation.check_out - @reservation.check_in).to_i %>泊</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">宿泊人数</div>
+      <div class="detail-value"><%= @reservation.guest_count %>名</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">予約確定日時</div>
+      <div class="detail-value"><%= @reservation.created_at.strftime("%Y-%m-%d %H:%M") %>
+      </div>
+    </div>
+    <div class="detail-row price">
+      <div class="detail-label">合計料金</div>
+      <div class="detail-value">¥<%= number_with_delimiter(@reservation.room.price * (@reservation.check_out - @reservation.check_in).to_i) %></div>
+    </div>
+  </div>
+  <div class="reservation-address">
+    <h4>施設住所</h4>
+    <p><%= @reservation.room.address %></p>
+  </div>
+  <div class="reservation-actions">
+    <%= link_to "予約をキャンセル", room_reservation_path(@reservation.room, @reservation), method: :delete, data: { confirm: "本当にキャンセルしますか？" }, class: "btn btn-danger" %>
+    <%= link_to "予約一覧に戻る", room_reservations_path(@reservation.room), class: "btn btn-secondary" %>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="room-form-container">
+  <h2>My施設を新規登録する</h2>
+  <%= form_with(model: @room, local: true) do |f| %>
+  <% if @room.errors.any? %>
+  <div class="error-messages">
+    <h4><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h4>
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, "施設名" %>
+    <%= f.text_field :name, required: true, placeholder: "例：山の家キャビン" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "施設の説明" %>
+    <%= f.text_area :description, required: true, placeholder: "施設の特徴や設備などを記入してください" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price, "料金" %>
+    <%= f.number_field :price, required: true, min: 1, placeholder: "1泊あたりの料金" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address, required: true, placeholder: "例：東京都新宿区西新宿1-1-1" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, "施設画像" %>
+    <div class="image-upload-container">
+      <div class="file-input-wrapper">
+        <%= f.file_field :image, onchange: "previewImage(this);" %>
+      </div>
+
+      <div id="image-preview" class="image-preview">
+        <% if @room.image.attached? %>
+        <%= image_tag @room.image, alt: "現在の画像" %>
+        <% else %>
+        <p class="text-muted">画像アップロードでプレビュー表示</p>
+        <% end %>
+      </div>
+
+      <div id="remove-image-option" style="display: none;" class="mb-3 text-center">
+        <a href="javascript:void(0);" onclick="removePreview()" class="simple-link">
+          プレビュー画像を削除
+        </a>
+      </div>
+
+      <% if @room.image.attached? %>
+      <div class="image-remove-option">
+        <%= f.check_box :remove_image, id: "remove_image_checkbox" %>
+        <%= f.label :remove_image, "保存済みの画像を削除（デフォルト画像に戻す）", for: "remove_image_checkbox", class: "remove-image-label" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "登録する", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", rooms_path %>
+  </div>
+  <% end %>
+</div>
+
+<script>
+  function previewImage(input) {
+    var preview = document.getElementById('image-preview');
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        preview.innerHTML = '<img src="' + e.target.result + '" alt="プレビュー" class="img-fluid" style="max-height: 200px;">';
+        document.getElementById('remove-image-option').style.display = 'block';
+      }
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      preview.innerHTML = '<p class="text-muted">画像をアップロードするとここにプレビューが表示されます</p>';
+      document.getElementById('remove-image-option').style.display = 'none';
+    }
+  }
+
+  function removePreview() {
+    document.getElementById('image-preview').innerHTML = '<p class="text-muted">画像をアップロードするとここにプレビューが表示されます</p>';
+    document.getElementById('remove-image-option').style.display = 'none';
+    document.querySelector('input[type="file"]').value = '';
+  }
+</script>

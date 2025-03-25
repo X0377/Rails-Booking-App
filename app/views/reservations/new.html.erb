@@ -1,0 +1,40 @@
+<div class="reservation-form-container">
+  <h2>予約する</h2>
+
+  <!-- エラーメッセージの表示は要修正 -->
+  <%= form_with(model: [@room, @reservation], local: true, url: confirm_room_reservations_path(@room)) do |form| %>
+  <% if @reservation.errors.any? %>
+  <div class="error-messages">
+    <h2><%= pluralize(@reservation.errors.count, "個") %>のエラーがあります：</h2>
+    <ul>
+      <% @reservation.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <% end %>
+
+  <%= form_with(model: [@room, @reservation], url: confirm_room_reservations_path(@room), method: :post, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :check_in, "チェックイン日" %>
+    <%= f.date_field :check_in, required: true, class: "date-input", id: "check_in_date" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :check_out, "チェックアウト日" %>
+    <%= f.date_field :check_out, required: true, class: "date-input", id: "check_out_date" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :guest_count, "宿泊人数" %>
+    <%= f.number_field :guest_count, required: true, min: 1, value: 1 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "予約内容を確認する", class: "submit-button" %>
+  </div>
+
+  <%= link_to "戻る", room_path(@room), class: "back-link" %>
+  <% end %>
+</div>
