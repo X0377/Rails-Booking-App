@@ -27,21 +27,21 @@ The Booking App is a Ruby on Rails application that allows users to register acc
 
 ### 🏠 Top Pages
 | Description | Screenshot |
-|------------|------------|
-| **Landing Page** | <img src="images/screenshots/トップページ.png" width="600"> |
-| **Home after Account Creation** | <img src="images/screenshots/アカウント作成後トップページ.png" width="600"> |
-| **Home after Login** | <img src="images/screenshots/ログイン後トップページ.png" width="600"> |
+|-------------|------------|
+| Landing Page | <img src="/images/screenshots/top.png" width="600"> |
+| Home after Sign Up | <img src="/images/screenshots/home_after_signup.png" width="600"> |
+| Home after Login | <img src="/images/screenshots/home_after_login.png" width="600"> |
 
 ---
 
 ### 🏨 Accommodation & Reservation
 | Description | Screenshot |
-|------------|------------|
-| **Accommodation Details** | <img src="images/screenshots/宿泊施設詳細.png" width="600"> |
-| **Reservation List** | <img src="images/screenshots/予約一覧.png" width="600"> |
-| **Reservation Form** | <img src="images/screenshots/予約情報入力画面.png" width="600"> |
-| **Reservation Confirmation** | <img src="images/screenshots/予約内容確認画面.png" width="600"> |
-| **Reservation Completed View** | <img src="images/screenshots/予約完了後詳細画面.png" width="600"> |
+|-------------|------------|
+| Accommodation Details | <img src="/images/screenshots/accommodation_detail.png" width="600"> |
+| Reservation List | <img src="/images/screenshots/reservation_list.png" width="600"> |
+| Reservation Form | <img src="/images/screenshots/reservation_form.png" width="600"> |
+| Reservation Confirmation | <img src="/images/screenshots/reservation_confirm.png" width="600"> |
+| Reservation Completed View | <img src="/images/screenshots/reservation_complete.png" width="600"> |
 
 
 ## 🛠 Technologies Used
