@@ -2,6 +2,7 @@ class ReservationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room
   before_action :set_reservation, only: [:show, :destroy]
+  before_action :check_reservation_ownership, only: [:show, :destroy]
 
   def index
     @reservations = current_user.reservations
@@ -27,14 +28,13 @@ class ReservationsController < ApplicationController
       return
     end
 
-    # 料金計算（泊数 × 人数 × 部屋の料金）
-    nights = (@reservation.check_out.to_date - @reservation.check_in.to_date).to_i
-    @total_price = nights * @reservation.guest_count * @room.price
+    # 料金計算はモデルに切り出し
+    @total_price = @reservation.total_price
   end
 
   def create
-    @reservation = @room.reservations.build(reservation_params)
-    @reservation.user = current_user
+    @reservation = current_user.reservations.build(reservation_params)
+    @reservation.room = @room
 
     if params[:back]
       render :new
@@ -65,6 +65,12 @@ class ReservationsController < ApplicationController
 
   def set_reservation
     @reservation = Reservation.find(params[:id])
+  end
+
+  def check_reservation_ownership
+    unless @reservation.user == current_user
+      redirect_to root_path, alert: "この操作は許可されていません"
+    end
   end
 
   def reservation_params
