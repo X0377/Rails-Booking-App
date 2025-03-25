@@ -18,10 +18,12 @@ The Booking App is a Ruby on Rails application that allows users to register acc
   - Keyword search (name, address, description)
   - Area-based search (Tokyo, Osaka, Kyoto, Sapporo)
 
+
 - 📅 **Reservation System**
   - Users can book accommodations (check-in, check-out, guest count)
   - View reservation list and reservation details
   - Calculate total accommodation cost (number of nights × price per night)
+
 
 ## 📸 Screenshots
 
@@ -42,28 +44,6 @@ The Booking App is a Ruby on Rails application that allows users to register acc
 | Reservation Form | <img src="public/images/screenshots/reservation_form.png" width="600"> |
 | Reservation Confirmation | <img src="public/images/screenshots/reservation_confirm.png" width="600"> |
 | Reservation Completed View | <img src="public/images/screenshots/reservation_complete.png" width="600"> |
-
-
-## 🛠 Technologies Used
-- 🛠 **Ruby on Rails 6.1.3.2**
-- 🎨 **Bootstrap (or Tailwind CSS)**
-- 💾 **SQLite** (Development Environment)
-- 🔐 **Devise** (User Authentication)
-- 📷 **Active Storage** (Image Upload)
-
-## 🔧 Setup
-To run this project locally, follow these steps:
-```sh
-git clone https://github.com/X0377/Rails-Booking-App.git
-cd booking_app
-bundle install
-rails db:create db:migrate
-rails s
-```
-Then, open `http://localhost:3000` in your browser.
-
-## 🎠 License
-This project is licensed under the MIT License.
 
 
 ## 🛠 Technologies Used
