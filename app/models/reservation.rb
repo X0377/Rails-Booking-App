@@ -19,4 +19,9 @@ class Reservation < ApplicationRecord
       errors.add(:check_out, "はチェックイン日より後の日付を選択してください")
     end
   end
+
+  def total_price
+    nights = (check_out.to_date - check_in.to_date).to_i
+    nights * guest_count * room.price
+  end
 end

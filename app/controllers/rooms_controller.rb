@@ -1,13 +1,14 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show, :search]
+  before_action :check_room_ownership, only: [:edit, :update, :destroy]
 
   def index
     @rooms = user_signed_in? ? current_user.rooms : []
   end
 
   def search
-    # 検索結果ページではすべての施設を対象にする
+    #検索結果ページではすべての施設を対象にする
     @rooms = Room.all
 
     if params[:keyword].present?
@@ -15,7 +16,7 @@ class RoomsController < ApplicationController
     end
 
     if params[:area].present?
-      @rooms = @rooms.where("address LIKE?", "%#{params[:area]}%")
+      @rooms = @rooms.where("address LIKE?", "#{params[:area]}%")
     end
 
     render :search_results
@@ -26,8 +27,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(room_params)
-    @room.user_id = current_user.id
+    @room = current_user.rooms.build(room_params)
 
     if @room.save
       redirect_to @room, notice: "施設を登録しました"
@@ -67,5 +67,11 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :description, :price, :address, :image)
+  end
+
+  def check_room_ownership
+    unless @room.user == current_user
+      redirect_to root_path, alert: "この操作は許可されていません"
+    end
   end
 end
