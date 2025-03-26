@@ -67,13 +67,13 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
   end
 
+  def reservation_params
+    params.require(:reservation).permit(:check_in, :check_out, :guest_count)
+  end
+
   def check_reservation_ownership
     unless @reservation.user == current_user
       redirect_to root_path, alert: "この操作は許可されていません"
     end
-  end
-
-  def reservation_params
-    params.require(:reservation).permit(:check_in, :check_out, :guest_count)
   end
 end

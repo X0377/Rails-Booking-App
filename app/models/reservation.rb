@@ -24,4 +24,8 @@ class Reservation < ApplicationRecord
     nights = (check_out.to_date - check_in.to_date).to_i
     nights * guest_count * room.price
   end
+
+  def total_nights
+    (check_out - check_in).to_i
+  end
 end

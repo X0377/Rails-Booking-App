@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
   end
 
   def search
-    #検索結果ページではすべての施設を対象にする
+    # 検索結果ページではすべての施設を対象にする
     @rooms = Room.all
 
     if params[:keyword].present?
@@ -37,9 +37,11 @@ class RoomsController < ApplicationController
   end
 
   def show
+    # set_roomで@roomをセット
   end
 
   def edit
+    # set_roomでセット済みの@roomにより、編集フォームを表示
   end
 
   def update
